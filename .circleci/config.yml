@@ -1,20 +1,5 @@
 version: 2
 jobs:
-  deploy-website:
-    docker:
-      # specify the version you desire here
-      - image: circleci/node:12.13.1
-    steps:
-      - checkout
-      - run:
-          name: Deploying to GitHub Pages
-          command: |
-            git config --global user.email "frehner@users.noreply.github.com"
-            git config --global user.name "CircleCI on behalf of Anthony Frehner"
-            echo "machine github.com login frehner password $GITHUB_TOKEN" > ~/.netrc
-            cd website
-            yarn install --frozen-lockfile
-            GIT_USER=frehner yarn deploy
   build-website:
     docker:
       # specify the version you desire here
@@ -32,12 +17,6 @@ jobs:
           command: bash <(curl -s https://dev.peek.run/ci) -d
 workflows:
   version: 2
-  build_and_deploy:
-    jobs:
-      - deploy-website:
-          filters:
-            branches:
-              only: master
   build:
     jobs:
       - build-website:
@@ -45,8 +24,3 @@ workflows:
             branches:
               ignore:
                 - gh-pages
-      - deploy-website:
-          filters:
-            branches:
-              only:
-                - master
