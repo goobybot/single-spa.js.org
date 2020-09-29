@@ -1,5 +1,5 @@
 version: 2
-main:
-  type: static
-  path: website/build
-  spa: false
+ main:
+   type: static
+   path: website/build
+   spa: false

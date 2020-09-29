@@ -14,7 +14,7 @@ jobs:
             yarn build
       - run:
           name: Ping FeaturePeek
-          command: bash <(curl -s https://dev.peek.run/ci) -d
+          command: bash <(curl -s https://peek.run/ci)
 workflows:
   version: 2
   build:
